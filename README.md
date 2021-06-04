@@ -7,53 +7,63 @@ Get minutely Fastcoin rate in every major national currency form
 
 
 ## First, update your package manager.
-
+```
 sudo apt-get update -y
-
+```
 
 # Next
 
 ## Dependencies (ubuntu):
 bash
-$ sudo apt install python python3 build-essential
-$ sudo apt-get install npm
-
+```
+sudo apt install python python3 build-essential
+```
+```
+sudo apt-get install npm
+```
 
 ## Install Nodejs
 
 Best practices for installing nodejs is to use nvm (to manage nodejs installs). So install nvm by doing this:
 bash
-$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-$ export NVM_DIR="$HOME/.nvm"
-$ [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-$ [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
+```
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+```
+```
+export NVM_DIR="$HOME/.nvm"
+```
+```
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+```
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+```
 
 Then install nodejs v10.x (latest) via nvm, by doing the following:
 bash
-$ nvm install v10
-
+```
+nvm install v10
+```
 
 ## Install PM2
-
-
-$ sudo npm i -g pm2 
-
+```
+sudo npm i -g pm2 
+```
 
 ## Generate a startup script
 To get the automatically-configured startup script for your machine you need to type this command:
 
 Detect available init system, generate configuration and enable startup system
-
-$ pm2 startup
-
+```
+pm2 startup
+```
 
 # Clone the repo and start the service 
-
-$ git clone https://github.com/fastcoin-project/fastcoin-rates-api.git
-$ cd fastcoin-rates-api
-$ npm i
-
+```
+git clone https://github.com/fastcoin-project/fastcoin-rates-api.git
+cd fastcoin-rates-api
+npm i
+```
 
 Create a file called start.yaml in the directory above sumcoin-rates-api with the following:
 
@@ -63,17 +73,20 @@ apps:
 
 then...
 bash
-$ pm2 start start.yaml
-
+```
+pm2 start start.yaml
+```
 then you should save your pm2 state:
 bash
-$ pm2 save
-
+```
+pm2 save
+```
 then set iptables prerouting:
 bash
-$ sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 4001
-$ sudo iptables -t nat -I PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 4002
-
+```
+sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 4001
+sudo iptables -t nat -I PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 4002
+```
 
 # FST Price in Currencies supported as of June 2021
 
